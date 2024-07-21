@@ -9,7 +9,7 @@ type CartState = {
 
 type CartActions = {
   addProduct: (product: Product) => void;
-  getProduct: (productId: Product["id"]) => CartProduct | undefined;
+  getProductById: (productId: Product["id"]) => CartProduct | undefined;
   removeProduct: (productId: Product["id"]) => void;
   incrementQty: (productId: Product["id"]) => void;
   decrementQty: (productId: Product["id"]) => void;
@@ -62,7 +62,8 @@ export const createCartSlice: StateCreator<
       state.products = state.products.filter(({ id }) => id !== productId);
     }),
 
-  getProduct: (productId) => get().products.find(({ id }) => id === productId),
+  getProductById: (productId) =>
+    get().products.find(({ id }) => id === productId),
 
   setTotal: (total) =>
     set((state) => {
